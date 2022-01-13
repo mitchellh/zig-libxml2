@@ -24,10 +24,10 @@ this into your repository.
 ```zig
 const libxml2 = @import("path/to/libxml2.zig");
 
-pub fn build(b: *std.build.Builder) void {
+pub fn build(b: *std.build.Builder) !void {
     // ...
 
-    const lib = libxml2.create(b, target, mode. {
+    const lib = try libxml2.create(b, target, mode, . {
         // These are the minimal options to NOT depend on any other libraries.
         // If you ave these libraries, just set these to true.
         .iconv = false,
