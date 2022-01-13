@@ -2,9 +2,12 @@
 
 This repository contains Zig code for building libxml2 using Zig.
 This allows other projects that use the Zig build system to easily
-consume this library, cross-compile it, etc. Note: you don't have to use
-Zig the programming language to benefit from this, see
-[Maintain it with Zig](https://kristoff.it/blog/maintain-it-with-zig/).
+consume this library, cross-compile it, etc.
+
+**Why?** Using the Zig build system makes it much easier to cross-compile
+a library, even if you aren't using the Zig programming language. See
+[Maintain it with Zig](https://kristoff.it/blog/maintain-it-with-zig/)
+for some more information.
 
 ## Usage
 
