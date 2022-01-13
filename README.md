@@ -9,6 +9,12 @@ a library, even if you aren't using the Zig programming language. See
 [Maintain it with Zig](https://kristoff.it/blog/maintain-it-with-zig/)
 for some more information.
 
+This library currently hardcodes the libxml2 version (latest as of writing
+this but unlikely to remain that way for long). In the future, I'd like to
+allow users to pass in a custom libxml2 directory, and it'd be really cool to
+setup some sort of Github Action to check for new versions and try to pull
+it in. Maybe one day.
+
 ## Usage
 
 While we all eagerly await the [Zig Package Manager](https://github.com/ziglang/zig/issues/943),
