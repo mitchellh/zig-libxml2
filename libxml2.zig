@@ -30,10 +30,19 @@ pub const Version = struct {
 pub const Library = struct {
     step: *std.build.LibExeObjStep,
 
+    /// statically link this library into the given step
     pub fn link(self: Library, other: *std.build.LibExeObjStep) void {
+        self.addIncludeDirs(other);
+        other.linkLibrary(self.step);
+    }
+
+    /// only add the include dirs to the given step. This is useful if building
+    /// a static library that you don't want to fully link in the code of this
+    /// library.
+    pub fn addIncludeDirs(self: Library, other: *std.build.LibExeObjStep) void {
+        _ = self;
         other.addIncludeDir(include_dir);
         other.addIncludeDir(override_include_dir);
-        other.linkLibrary(self.step);
     }
 };
 
