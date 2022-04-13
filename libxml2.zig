@@ -179,6 +179,12 @@ pub fn create(
 
     ret.addIncludeDir(include_dir);
     ret.addIncludeDir(override_include_dir);
+    if (target.isWindows()) {
+        ret.addIncludeDir(win32_include_dir);
+        ret.linkSystemLibrary("ws2_32");
+    } else {
+        ret.addIncludeDir(posix_include_dir);
+    }
     ret.linkLibC();
 
     return Library{ .step = ret };
@@ -190,7 +196,9 @@ fn root() []const u8 {
 
 /// Directories with our includes.
 const include_dir = root() ++ "libxml2/include";
-const override_include_dir = root() ++ "include";
+const override_include_dir = root() ++ "override/include";
+const posix_include_dir = root() ++ "override/config/posix";
+const win32_include_dir = root() ++ "override/config/win32";
 
 const srcs = &.{
     root() ++ "libxml2/buf.c",
