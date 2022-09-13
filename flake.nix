@@ -2,7 +2,7 @@
   description = "libflightplan";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
     flake-utils.url = "github:numtide/flake-utils";
     zig.url = "github:mitchellh/zig-overlay";
   };
