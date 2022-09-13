@@ -54,13 +54,13 @@ pub const Options = struct {
     c14n: bool = true,
     catalog: bool = true,
     debug: bool = true,
-    docb: bool = true, // docbook
-    ftp: bool = true,
+    ftp: bool = false,
     history: bool = true,
     html: bool = true,
     iconv: bool = true,
     icu: bool = false,
     iso8859x: bool = true,
+    legacy: bool = false,
     mem_debug: bool = false,
     minimum: bool = true,
     output: bool = true,
@@ -80,6 +80,7 @@ pub const Options = struct {
     xinclude: bool = true,
     xpath: bool = true,
     xptr: bool = true,
+    xptr_locs: bool = false,
     modules: bool = true,
     lzma: bool = true,
     zlib: bool = true,
@@ -173,9 +174,6 @@ pub fn create(
 
     // C files
     ret.addCSourceFiles(srcs, flags.items);
-    if (opts.sax1) {
-        ret.addCSourceFile(comptime root() ++ "libxml2/DOCBparser.c", flags.items);
-    }
 
     ret.addIncludeDir(include_dir);
     ret.addIncludeDir(override_include_dir);

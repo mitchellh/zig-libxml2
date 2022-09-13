@@ -11,5 +11,6 @@
 #define LIBXML_ATTR_FORMAT(fmt,args)
 #define LIBXML_ATTR_ALLOC_SIZE(x)
 #define ATTRIBUTE_UNUSED
+#define XML_DEPRECATED
 
 #endif
