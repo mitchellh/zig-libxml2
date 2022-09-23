@@ -32,17 +32,17 @@ pub const Library = struct {
 
     /// statically link this library into the given step
     pub fn link(self: Library, other: *std.build.LibExeObjStep) void {
-        self.addIncludeDirs(other);
+        self.addIncludePaths(other);
         other.linkLibrary(self.step);
     }
 
     /// only add the include dirs to the given step. This is useful if building
     /// a static library that you don't want to fully link in the code of this
     /// library.
-    pub fn addIncludeDirs(self: Library, other: *std.build.LibExeObjStep) void {
+    pub fn addIncludePaths(self: Library, other: *std.build.LibExeObjStep) void {
         _ = self;
-        other.addIncludeDir(include_dir);
-        other.addIncludeDir(override_include_dir);
+        other.addIncludePath(include_dir);
+        other.addIncludePath(override_include_dir);
     }
 };
 
@@ -175,13 +175,13 @@ pub fn create(
     // C files
     ret.addCSourceFiles(srcs, flags.items);
 
-    ret.addIncludeDir(include_dir);
-    ret.addIncludeDir(override_include_dir);
+    ret.addIncludePath(include_dir);
+    ret.addIncludePath(override_include_dir);
     if (target.isWindows()) {
-        ret.addIncludeDir(win32_include_dir);
+        ret.addIncludePath(win32_include_dir);
         ret.linkSystemLibrary("ws2_32");
     } else {
-        ret.addIncludeDir(posix_include_dir);
+        ret.addIncludePath(posix_include_dir);
     }
     ret.linkLibC();
 
