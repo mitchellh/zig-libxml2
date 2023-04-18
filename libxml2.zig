@@ -8,21 +8,15 @@ pub const Version = struct {
     pub const micro = "12";
 
     pub fn number() []const u8 {
-        comptime {
-            return major ++ "0" ++ minor ++ "0" ++ micro;
-        }
+        return comptime major ++ "0" ++ minor ++ "0" ++ micro;
     }
 
     pub fn string() []const u8 {
-        comptime {
-            return "\"" ++ number() ++ "\"";
-        }
+        return comptime "\"" ++ number() ++ "\"";
     }
 
     pub fn dottedString() []const u8 {
-        comptime {
-            return "\"" ++ major ++ "." ++ minor ++ "." ++ micro ++ "\"";
-        }
+        return comptime "\"" ++ major ++ "." ++ minor ++ "." ++ micro ++ "\"";
     }
 };
 
