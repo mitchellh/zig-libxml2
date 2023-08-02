@@ -6,7 +6,7 @@ const c = @cImport({
 });
 
 test "reading" {
-    const testPath = try testFile("basic.xml");
+    const testPath = comptime try testFile("basic.xml");
 
     const ctx = c.xmlNewParserCtxt();
     try testing.expect(ctx != null);

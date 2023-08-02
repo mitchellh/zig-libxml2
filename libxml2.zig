@@ -35,8 +35,8 @@ pub const Library = struct {
     /// library.
     pub fn addIncludePaths(self: Library, other: *std.build.LibExeObjStep) void {
         _ = self;
-        other.addIncludePath(include_dir);
-        other.addIncludePath(override_include_dir);
+        other.addIncludePath(.{ .path = include_dir });
+        other.addIncludePath(.{ .path = override_include_dir });
     }
 };
 
@@ -171,13 +171,13 @@ pub fn create(
     // C files
     ret.addCSourceFiles(srcs, flags.items);
 
-    ret.addIncludePath(include_dir);
-    ret.addIncludePath(override_include_dir);
+    ret.addIncludePath(.{ .path = include_dir });
+    ret.addIncludePath(.{ .path = override_include_dir });
     if (target.isWindows()) {
-        ret.addIncludePath(win32_include_dir);
+        ret.addIncludePath(.{ .path = win32_include_dir });
         ret.linkSystemLibrary("ws2_32");
     } else {
-        ret.addIncludePath(posix_include_dir);
+        ret.addIncludePath(.{ .path = posix_include_dir });
     }
     ret.linkLibC();
 

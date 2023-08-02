@@ -12,7 +12,7 @@ pub fn build(b: *std.build.Builder) !void {
         .lzma = false,
         .zlib = false,
     });
-    xml2.step.install();
+    b.installArtifact(xml2.step);
 
     // Tests that we can depend on other libraries like zlib
     const xml2_with_libs = try libxml2.create(b, target, optimize, .{
@@ -23,8 +23,9 @@ pub fn build(b: *std.build.Builder) !void {
         // Testing this
         .zlib = true,
     });
-    const z = zlib.create(b, target, optimize);
-    z.link(xml2_with_libs.step, .{});
+    // todo: uncomment when zig-zlib is updated
+    // const z = zlib.create(b, target, optimize);
+    // z.link(xml2_with_libs.step, .{});
 
     const static_binding_test = b.addTest(.{
         .root_source_file = .{ .path = "test/basic.zig" },
